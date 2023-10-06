@@ -138,7 +138,7 @@
           
           <div class="row g-0 mb-3">
             <div class="col-4 col-md-2 p-2 pe-0">
-              <img src="./images/livros/jogos-vorazes.jpg" class="img-fluid imagem-meus-livros w-100 object-fit-contain align-self-start" alt="...">
+              <img src="./images/livros/nenhum.jpg" class="img-fluid imagem-meus-livros w-100 object-fit-contain align-self-start" alt="...">
             </div>
             <div class="col-8 col-md-10">
               <div class="card-body">
