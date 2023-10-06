@@ -241,6 +241,9 @@ ALTER TABLE `tb_livro_autor`
   ADD CONSTRAINT `tb_livro_autor_ibfk_2` FOREIGN KEY (`cd_autor`) REFERENCES `tb_autor` (`cd_autor`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+
+ALTER TABLE tb_genero ADD INDEX (cd_genero);
+
 -- FOREIGN KEY de tabela `tb_livro_genero`
 --
 ALTER TABLE `tb_livro_genero`
