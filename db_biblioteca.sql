@@ -32,7 +32,7 @@ USE `db_biblioteca`;
 CREATE TABLE `tb_autor` (
   `cd_autor` int(11) NOT NULL,
   `nm_autor` varchar(255) NOT NULL,
-  `url_autor` varchar(255) NOT NULL DEFAULT './images/autores/nenhum.jpg',
+  `img_autor` varchar(255) NOT NULL DEFAULT './images/autores/nenhum.jpg',
   `ds_autor` varchar(255) NOT NULL DEFAULT 'Nenhuma descrição.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -84,10 +84,9 @@ CREATE TABLE `tb_livro` (
   `cd_livro` int(11) NOT NULL,
   `nm_livro` varchar(255) NOT NULL,
   `ds_livro` varchar(255) NOT NULL,
-  `cd_autor` int(11) NOT NULL,
   `cd_editora` int(11) NOT NULL,
-  `url_capa` varchar(255) NOT NULL DEFAULT './images/livros/nenhum.jpg',
-  `ds_genero` int(11) NOT NULL,
+  `img_capa` varchar(255) NOT NULL DEFAULT './images/livros/nenhum.jpg',
+  `isbn` varchar(13) NOT NULL,
   `status` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -118,6 +117,24 @@ CREATE TABLE `tb_usuario` (
   `ds_usuario` varchar(255) NOT NULL DEFAULT 'Nenhuma descrição.',
   `email_usuario` varchar(255) NOT NULL,
   `senha_usuario` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Estrutura da tabela `tb_livro_autor`
+--
+
+CREATE TABLE `tb_livro_autor` (
+  `cd_livro` int(11) NOT NULL,
+  `cd_autor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Estrutura da tabela `tb_livro_genero`
+--
+
+CREATE TABLE `tb_livro_genero` (
+  `cd_livro` int(11) NOT NULL,
+  `cd_genero` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -202,6 +219,33 @@ ALTER TABLE `tb_reserva`
 ALTER TABLE `tb_usuario`
   MODIFY `cd_usuario` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
+
+--
+-- FOREIGN KEY de tabela `tb_livro`
+--
+ALTER TABLE `tb_livro`
+  ADD CONSTRAINT `tb_livro_ibfk_1` FOREIGN KEY (`cd_editora`) REFERENCES `tb_editora` (`cd_editora`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- FOREIGN KEY de tabela `tb_reserva`
+--
+ALTER TABLE `tb_reserva`
+  ADD CONSTRAINT `tb_reserva_ibfk_1` FOREIGN KEY (`cd_livro`) REFERENCES `tb_livro` (`cd_livro`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_reserva_ibfk_2` FOREIGN KEY (`cd_usuario`) REFERENCES `tb_usuario` (`cd_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- FOREIGN KEY de tabela `tb_livro_autor`
+--
+ALTER TABLE `tb_livro_autor`
+  ADD CONSTRAINT `tb_livro_autor_ibfk_1` FOREIGN KEY (`cd_livro`) REFERENCES `tb_livro` (`cd_livro`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_livro_autor_ibfk_2` FOREIGN KEY (`cd_autor`) REFERENCES `tb_autor` (`cd_autor`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- FOREIGN KEY de tabela `tb_livro_genero`
+--
+ALTER TABLE `tb_livro_genero`
+  ADD CONSTRAINT `tb_livro_genero_ibfk_1` FOREIGN KEY (`cd_livro`) REFERENCES `tb_livro` (`cd_livro`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_livro_genero_ibfk_2` FOREIGN KEY (`cd_genero`) REFERENCES `tb_genero` (`cd_genero`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
