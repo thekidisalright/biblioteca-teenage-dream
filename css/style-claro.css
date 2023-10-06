@@ -108,3 +108,13 @@ body{
     border: none !important;
     border-top: 2px solid var(--roxo-2) !important;
 }
+
+::-moz-selection { /* Code for Firefox */
+    color: var(--preto) !important;
+    background: var(--roxo-4) !important;
+}
+  
+::selection {
+    color: var(--preto) !important;
+    background: var(--roxo-4) !important;
+}
