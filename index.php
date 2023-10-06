@@ -130,6 +130,48 @@
         </div>
     </div>
 
+    <div class='row justify-content-center'>
+        <div class="card col-10 p-0">
+          <div class="col-12 d-flex rounded-top-1 header-card">
+            <h5 class="card-header col">Desejados</h5>
+          </div>
+          
+          <div class="row g-0 mb-3">
+            <div class="col-4 col-md-2 p-2 pe-0">
+              <img src="./images/livros/jogos-vorazes.jpg" class="img-fluid imagem-meus-livros w-100 object-fit-contain align-self-start" alt="...">
+            </div>
+            <div class="col-8 col-md-10">
+              <div class="card-body">
+                <h6 class="card-title">Divergente</h6>
+                <p class="card-text nome-autor">por <a href="">Veronica Roth</a></p>
+                <p class="card-text generos"><a href="">Young Adult</a> <a href="">Ficção</a> <a href="">Fantasia</a> <a href="">Romance</a> <a href="">...mais</a></p>
+                <p class="card-text"><small class="text-body-secondary">Disponível</small></p>
+                <p><button type="button" class="btn btn-success">Alocar</button></p>
+                <p><button type="button" class="btn btn-primary">Sobre o livro</button></p>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center"><hr class="divisor col-10"></div>
+          
+          <div class="row g-0 mb-3">
+            <div class="col-4 col-md-2 p-2 pe-0">
+              <img src="./images/livros/percy-jackson-ladrao-de-raios.jpg" class="img-fluid w-100 imagem-meus-livros object-fit-contain align-self-start" alt="...">
+            </div>
+            <div class="col-8 col-md-10">
+              <div class="card-body">
+                <h6 class="card-title">O Ladrão de Raios</h6>
+                <p class="card-text nome-autor">por <a href="">Rick Riordan</a></p>
+                <p class="card-text generos"><a href="">Fantasia</a> <a href="">Young Adult</a> <a href="">Mitologia</a> <a href="">Aventura</a> <a href="">...mais</a></p>
+                <p class="card-text"><small class="text-body-secondary">Reservado há 3 dias 05/10/2023</small></p>
+                <p><button type="button" class="btn btn-success">Devolver</button></p>
+                <p><button type="button" class="btn btn-primary">Sobre o livro</button></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
 
   </div>
 

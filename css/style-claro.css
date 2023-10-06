@@ -101,6 +101,7 @@ body{
     font-weight: bold !important;
     text-decoration-color: var(--roxo-2) !important;
     text-decoration-thickness: 2px !important;
+    margin-right: 8px !important;
 }
 
 .divisor{
