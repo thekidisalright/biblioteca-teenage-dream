@@ -1,0 +1,109 @@
+:root{
+    --roxo-1: #5B0888;
+    --roxo-2: #713ABE;
+    --roxo-3: #9D76C1;
+    --roxo-4: #E5CFF7;
+    --branco: #F5F5F7;
+    --preto: #1B1B1F;
+
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;500;600;700;800;900&family=Open+Sans:wght@300;400;700&display=swap');
+
+    --fonte: 'Montserrat', sans-serif;
+}
+
+body{
+    background-color: var(--branco);
+    color: var(--preto);
+    font-family: var(--fonte);
+}
+
+.logo-navbar{
+    background-color: var(--roxo-4) !important;
+}
+
+.logo-navbar a span{
+    color: var(--roxo-1) !important;
+}
+
+.item-navbar a{
+    color: var(--roxo-4) !important;
+}
+
+.item-navbar .active{
+    font-weight: bold !important;
+}
+
+.dropdown-navbar{
+    background-color: var(--roxo-1) !important;
+}
+
+.dropdown-navbar a:hover{
+    background-color: var(--roxo-4) !important;
+    color: var(--roxo-1) !important;
+}
+
+.botao{
+    border: 1px solid var(--roxo-4) !important;
+    color: var(--roxo-4) !important;
+}
+
+.menu-hamburguer{
+    background-color: var(--roxo-4) !important;
+}
+
+.botao:hover{
+    background-color: var(--roxo-4) !important;
+    color: var(--roxo-1) !important;
+}
+
+.input-pesquisa:focus{
+    border: 1px solid var(--roxo-1) !important;
+    box-shadow: 0 0 0 0.25rem var(--roxo-4) !important;
+}
+
+.navbar-top{
+    background-color: var(--roxo-1) !important;
+}
+
+.navbar-top .container-fluid .show{
+    border-radius: 0px !important;
+}
+
+.header-quote{
+    background-color: var(--roxo-1) !important;
+    color: var(--branco) !important;
+}
+
+.quote{
+    background-color: var(--roxo-4);
+}
+
+.header-card{
+    background-color: var(--roxo-1) !important;
+    color: var(--branco) !important;
+}
+
+.titulo-livro{
+    font-size: 0.9rem !important;
+}
+
+.nome-autor, .generos{
+    font-size: 0.8rem !important;
+}
+
+.nome-autor a{
+    color: var(--roxo-1) !important;
+    font-weight: 600 !important;
+}
+
+.generos a{
+    color: var(--preto) !important;
+    font-weight: bold !important;
+    text-decoration-color: var(--roxo-2) !important;
+    text-decoration-thickness: 2px !important;
+}
+
+.divisor{
+    border: none !important;
+    border-top: 2px solid var(--roxo-2) !important;
+}
