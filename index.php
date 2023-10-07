@@ -2,6 +2,16 @@
 
 require("./conexao.php");
 
+if(!isset($_SESSION))
+{
+  session_start();
+}
+
+if(isset($_SESSION['cd_usuario']))
+{
+  header("Location: ./home.php");
+}
+
 if(isset($_POST['email']) || isset($_POST['senha']))
 {
 
@@ -96,7 +106,7 @@ if(isset($_POST['email']) || isset($_POST['senha']))
           </div>
           <div class="input-group mb-4">
             <label for="senha" class="fs-6 fw-regular me-3">Senha</label>
-            <input type="password" name="senha" class="form-control form-control-lg fs-6 rounded-3" placeholder="Insira uma senha">
+            <input type="password" name="senha" class="form-control form-control-lg fs-6 rounded-3" placeholder="Insira uma senha" minlength="8">
           </div>
           <div class="input-group mb-4">
             <button type="submit" class="btn btn-lg w-100 fs-6 botaoLogin fw-semibold">Login</button>

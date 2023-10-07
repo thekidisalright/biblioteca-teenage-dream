@@ -1,5 +1,7 @@
 <?php
 
+require("./conexao.php");
+
 if(!isset($_SESSION))
 {
   session_start();
@@ -10,6 +12,24 @@ if(!isset($_SESSION['cd_usuario']))
   header("Location: ./index.php");
 }
 
+if(isset($_POST['pesquisa']))
+{
+  $termoPesquisa = mysqli_real_escape_string($mysqli, $_POST['pesquisa']);
+  $sql_livro = "SELECT * FROM tb_livro WHERE nm_livro LIKE '%$termoPesquisa%'";
+  $sql_autor = "SELECT * FROM tb_autor WHERE nm_autor LIKE '%$termoPesquisa%'";
+  $sql_editora = "SELECT * FROM tb_editora WHERE nm_editora LIKE '%$termoPesquisa%'";
+  $sql_genero = "SELECT * FROM tb_genero WHERE nm_genero LIKE '%$termoPesquisa%'";
+  $resultado_livro = mysqli_query($mysqli, $sql_livro);
+  $resultado_autor = mysqli_query($mysqli, $sql_autor);
+  $resultado_editora = mysqli_query($mysqli, $sql_editora);
+  $resultado_genero = mysqli_query($mysqli, $sql_genero);
+  $quantidade_pesquisa = mysqli_num_rows($resultado_pesquisa);
+  echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>Foram encontrados $quantidade_pesquisa resultados para a pesquisa <strong>$termoPesquisa</strong>!
+  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+  </div>";
+}
+
+$dataHoje = date("d/m/Y");
 ?>
 
 <!DOCTYPE html>
@@ -26,8 +46,8 @@ if(!isset($_SESSION['cd_usuario']))
 
 <body>
   <div class='container'>
-    <div class='row mb-5 mt-3'>
-      <nav class='navbar navbar-expand-lg rounded-pill navbar-top'>
+    <div class='row mb-5 mt-3 justify-content-center'>
+      <nav class='navbar navbar-expand-lg rounded-pill navbar-top col-11'>
         <div class='container-fluid'>
           <div class='col-auto me-4 px-3 h-75 logo-navbar d-flex rounded-pill'>
             <a class='navbar-brand m-0' href='#'><span class='fw-semibold text-center'>Teenage Dream</span></a>
@@ -72,9 +92,9 @@ if(!isset($_SESSION['cd_usuario']))
                 </ul>
               </li>
             </ul>
-            <form class='d-flex' role='search'>
+            <form class='d-flex' role='search' method="POST" action="./pesquisa.php">
               <input class='form-control me-2 rounded-pill input-pesquisa' type='search' placeholder='Pesquisar'
-                aria-label='Search' />
+              aria-label='Search' name="pesquisa" minlength="3"/>
               <button class='btn botao rounded-pill' type='submit'>
                 Pesquisar
               </button>
@@ -86,13 +106,14 @@ if(!isset($_SESSION['cd_usuario']))
     </div>
 
     <div class='row mb-3'>
-      <h1>Bem-vindo(a), <?php echo $_SESSION['pnm_usuario']; ?></h1>
+      <h1>Bem-vindo(a), <?php echo $_SESSION['pnm_usuario']; ?> &#x1F44B;</h1>
     </div>
 
     <div class='row justify-content-center mb-4'>
       <div class="card col-8 p-0">
-        <div class="card-header header-quote">
-          Frase motivacional
+        <div class="card-header header-quote d-flex justify-content-between">
+          <span>Frase motivacional do dia </span>
+          <?php echo "$dataHoje";?>
         </div>
         <div class="card-body quote">
           <blockquote class="blockquote mb-0">
