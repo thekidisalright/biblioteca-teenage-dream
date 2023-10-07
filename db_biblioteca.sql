@@ -142,7 +142,7 @@ CREATE TABLE `tb_livro_serie` (
   `cd_livro` int(11) NOT NULL,
   `cd_serie` int(11) NOT NULL,
   `nm_serie` varchar(255) NOT NULL,
-  `ds_serie` varchar(255) NOT NULL DEFAULT 'Nenhuma descrição.'
+  `ds_serie` varchar(255) NOT NULL DEFAULT 'Nenhuma descrição.',
   `volume` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 --
