@@ -3,7 +3,7 @@
 $usuario = "root";
 $senha = "root";
 $banco = "db_biblioteca";
-$host = "127.0.0.1";
+$host = "localhost";
 
 $mysqli = new mysqli($host, $usuario, $senha, $banco);
 

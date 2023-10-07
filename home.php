@@ -1,3 +1,17 @@
+<?php
+
+if(!isset($_SESSION))
+{
+  session_start();
+}
+
+if(!isset($_SESSION['cd_usuario']))
+{
+  header("Location: ./index.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang='pt-br'>
 
@@ -65,13 +79,14 @@
                 Pesquisar
               </button>
             </form>
+            <a class='nav-link mx-md-3 logoutBotao' href='./logout.php'>Logout</a>
           </div>
         </div>
       </nav>
     </div>
 
     <div class='row mb-3'>
-      <h1>Bem-vindo(a), Usuário</h1>
+      <h1>Bem-vindo(a), <?php echo $_SESSION['pnm_usuario']; ?></h1>
     </div>
 
     <div class='row justify-content-center mb-4'>

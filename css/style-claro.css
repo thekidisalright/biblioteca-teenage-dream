@@ -117,3 +117,7 @@ body{
     color: var(--preto) !important;
     background: var(--roxo-4) !important;
 }
+
+.logoutBotao {
+    color: var(--branco) !important;
+}
