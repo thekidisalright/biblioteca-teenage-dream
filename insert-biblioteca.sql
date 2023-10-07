@@ -15,11 +15,15 @@ INSERT INTO tb_editora (nm_editora, ds_editora) VALUES
 ('Gutenberg', 'Especializada em literatura infantojuvenil, oferece uma ampla variedade de livros para jovens leitores.'),
 ('Cia das Letras', 'Uma das maiores editoras do Brasil, com um catálogo diversificado que inclui obras literárias e de não-ficção.'),
 ('Martins Fontes', 'Editora com tradição em publicações acadêmicas e obras de referência.'),
-('Editora 34', 'Conhecida por suas edições de qualidade de obras literárias e de ensaios críticos.');
+('Editora 34', 'Conhecida por suas edições de qualidade de obras literárias e de ensaios críticos.')
+('José Olympio', 'A Editora José Olympio é uma das editoras mais antigas do Brasil, fundada em 1931. Ela é um dos pilares da cultura brasileira e publica obras de importância literária ímpar. A editora é responsável pela publicação de clássicos mundiais como "O Sol é Para Todos" e "O Menino do Dedo Verde".')
+('Editorial Presença', 'A Editorial Presença é uma editora independente portuguesa que publica mais de 100 novos títulos por ano. Fundada em 1960, a editora é composta por quatro chancelas: Presença, Marcador, Jacarandá e Manuscrito. A editora publica obras de diversas áreas, incluindo apoio escolar, arte, culinária, história, economia, gestão, literatura infantil, saúde e família. A Editorial Presença tem um sólido compromisso com a difusão da literatura e publica alguns dos mais notáveis autores contemporâneos, apostando também na divulgação de novos valores da ficção portuguesa.');
 
 -- Adicione aqui mais editoras populares conforme necessário
 
 
 
-INSERT INTO tb_livro (nm_livro, ds_livro, cd_editora, isbn, `status`) VALUES
-('Jogos Vorazes', 'Num futuro distópico, Katniss Everdeen luta pela sobrevivência ao participar dos brutais Jogos Vorazes, um evento mortal criado pelo governo. Enquanto enfrenta adversários, ela desafia o sistema e se torna um símbolo de resistência.', 1, '8579800242', 1);
+INSERT INTO tb_livro (nm_livro, ds_livro, cd_editora, isbn10, isbn13) VALUES
+('Jogos Vorazes', 'Num futuro distópico, Katniss Everdeen luta pela sobrevivência ao participar dos brutais Jogos Vorazes, um evento mortal criado pelo governo. Enquanto enfrenta adversários, ela desafia o sistema e se torna um símbolo de resistência.', 1, '655532144X', '9786555321449'),
+('O Sol é para todo', 'Clássico da literatura americana, "O Sol é Para Todos" de Harper Lee é um livro sobre racismo e injustiça. A história se passa nos anos 1930, quando um advogado defende um homem negro acusado de estuprar uma mulher branca. O livro é narrado pela filha do advogado, Scout, e aborda temas como tolerância, perda da inocência e conceito de justiça.', 16, '8503009498', '9788503009492'),
+(, '9722325337', '9789722325332')

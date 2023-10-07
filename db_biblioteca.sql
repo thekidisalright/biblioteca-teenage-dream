@@ -88,7 +88,7 @@ CREATE TABLE `tb_livro` (
   `img_capa` varchar(255) NOT NULL DEFAULT './images/livros/nenhum.jpg',
   `isbn10` varchar(10),
   `isbn13` varchar(13),
-  `status` tinyint(4) NOT NULL
+  `status_livro` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
