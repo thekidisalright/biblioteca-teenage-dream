@@ -138,6 +138,13 @@ CREATE TABLE `tb_livro_genero` (
   `cd_genero` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `tb_livro_serie` (
+  `cd_livro` int(11) NOT NULL,
+  `cd_serie` int(11) NOT NULL,
+  `nm_serie` varchar(255) NOT NULL,
+  `ds_serie` varchar(255) NOT NULL DEFAULT 'Nenhuma descrição.'
+  `volume` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 --
 -- Índices para tabelas despejadas
 --
@@ -181,6 +188,12 @@ ALTER TABLE `tb_usuario`
   ADD UNIQUE KEY `username` (`email_usuario`) USING HASH;
 
 --
+-- Índices para tabela `tb_livro_serie`
+--
+ALTER TABLE `tb_livro_serie`
+  ADD PRIMARY KEY (`cd_serie`);
+
+--
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
@@ -222,6 +235,12 @@ ALTER TABLE `tb_usuario`
 COMMIT;
 
 --
+-- AUTO_INCREMENT de tabela `tb_livro_serie`
+--
+ALTER TABLE `tb_livro_serie`
+  MODIFY `cd_serie` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- FOREIGN KEY de tabela `tb_livro`
 --
 ALTER TABLE `tb_livro`
@@ -250,6 +269,12 @@ ALTER TABLE tb_genero ADD INDEX (cd_genero);
 ALTER TABLE `tb_livro_genero`
   ADD CONSTRAINT `tb_livro_genero_ibfk_1` FOREIGN KEY (`cd_livro`) REFERENCES `tb_livro` (`cd_livro`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tb_livro_genero_ibfk_2` FOREIGN KEY (`cd_genero`) REFERENCES `tb_genero` (`cd_genero`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- FOREIGN KEY de tabela `tb_livro_serie`
+--
+ALTER TABLE `tb_livro_serie`
+  ADD CONSTRAINT `tb_livro_serie_ibfk_1` FOREIGN KEY (`cd_livro`) REFERENCES `tb_livro` (`cd_livro`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
