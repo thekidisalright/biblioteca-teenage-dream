@@ -1,18 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;500;600;700;800;900&family=Open+Sans:wght@300;400;700&display=swap');
 :root{
-    --roxo-1: #5B0888;
-    --roxo-2: #713ABE;
-    --roxo-3: #9D76C1;
-    --roxo-4: #E5CFF7;
+    --roxo-1: #6528F7;
+    --roxo-2: #8D4BFF;
+    --roxo-3: #B46CFF;
+    --roxo-4: #DA8DFF;
     --branco: #F5F5F7;
     --preto: #1B1B1F;
+    --rosa: #F300BA;
 
     --fonte: 'Montserrat', sans-serif;
 }
 
 body{
-    background-color: var(--branco);
-    color: var(--preto);
+    background-color: var(--roxo-1);
+    color: var(--branco);
     font-family: var(--fonte);
 }
 
@@ -110,12 +111,12 @@ body{
 
 ::-moz-selection { /* Code for Firefox */
     color: var(--preto) !important;
-    background: var(--roxo-4) !important;
+    background: var(--rosa) !important;
 }
   
 ::selection {
     color: var(--preto) !important;
-    background: var(--roxo-4) !important;
+    background: var(--rosa) !important;
 }
 
 .logoutBotao {

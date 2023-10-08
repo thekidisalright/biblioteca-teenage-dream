@@ -74,7 +74,7 @@ if(isset($_POST['email']) || isset($_POST['senha']))
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/bootstrap.css">
-  <link rel="stylesheet" href="./css/style-login.css">
+  <link rel="stylesheet" href="./css/login.css">
   <link rel="shortcut icon" href="./images/icone-teenage-dream.png" type="image/x-icon">
   <title>Login - Teenage Dream</title>
 </head>
@@ -96,7 +96,7 @@ if(isset($_POST['email']) || isset($_POST['senha']))
 
         <div class="row align-items-center">
           <div class="header-text mb-4">
-            <h1 class="fw-semibold">Olá &#x1F44B;</h1>
+            <h1 class="fw-semibold">Bem-vindo &#x1F44B;</h1>
             <p>Estamos felizes que você voltou.</p>
           </div>
           <form action="" method="POST">

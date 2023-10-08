@@ -20,8 +20,9 @@ $dataHoje = date("d/m/Y");
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1.0' />
   <link rel='stylesheet' href='./css/bootstrap.css' />
-  <link rel='stylesheet' href='./css/style-claro.css' />
+  <link rel='stylesheet' href='./css/style.css' />
   <link rel="shortcut icon" href="./images/icone-teenage-dream.png" type="image/x-icon">
+  <link rel="stylesheet" href="./css/card.css">
   <title>Início - Teenage Dream</title>
 </head>
 
@@ -201,6 +202,99 @@ $dataHoje = date("d/m/Y");
         </div>
 
       </div>
+    </div>
+
+    <div class="row d-flex align-items-center">
+      <div class="label-livro col-4 col-md-2">
+        <p class="text-wrap fw-bold fs-2">Meus Livros</p>
+      </div>
+      <section class="lista-livros col-8 col-md-10">
+
+        <article class="livro">
+          <header class="livro-header">
+            <div class="d-flex justify-content-between">
+              <small class="fw-bold">Vence</small> 
+              <small>07/10/2023</small>
+            </div>
+            
+            <h2>Jogos Vorazes</h2>
+          </header>
+
+          <div class="d-flex mt-3">
+            <div class="img-livro">
+            <img src="./images/livros/jogos-vorazes.jpg">
+          </div>
+
+          <div class="livro-autor">
+            <a href="" class="autor-avatar">
+              <img src="./images/livros/jogos-vorazes.jpg">
+            </a>
+            <div class="nome-autor">
+            <div class="nome-autor-prefixo">
+              Autor(a)
+            </div>
+            Suzanne Collins
+          </div>
+          </div>
+          </div>
+
+          <div class="botoes d-flex">
+            <button type="button" class="btn btn-devolver rounded-pill me-4">Devolver</button>
+            <button type="button" class="btn btn-sobre rounded-pill">Sobre o livro</button>
+          </div>
+          
+
+          
+
+        </article>
+
+        <article class="livro">
+          <header class="livro-header">
+            <p>07/10/2023</p>
+            <h2>Andróides Sonham com Ovelhas Elétricas?</h2>
+          </header>
+        </article>
+
+        <article class="livro">
+          <header class="livro-header">
+            <p>07/10/2023</p>
+            <h2>Jogos Vorazes</h2>
+          </header>
+        </article>
+
+        <article class="livro">
+          <header class="livro-header">
+            <p>07/10/2023</p>
+            <h2>Jogos Vorazes</h2>
+          </header>
+        </article>
+        </article>
+
+        <article class="livro">
+          <header class="livro-header">
+            <p>07/10/2023</p>
+            <h2>Jogos Vorazes</h2>
+          </header>
+        </article>
+        </article>
+
+        <article class="livro">
+          <header class="livro-header">
+            <p>07/10/2023</p>
+            <h2>Jogos Vorazes</h2>
+          </header>
+        </article>
+        </article>
+
+        <article class="livro">
+          <header class="livro-header">
+            <p>07/10/2023</p>
+            <h2>Jogos Vorazes</h2>
+          </header>
+        </article>
+
+      </section>
+
     </div>
 
 

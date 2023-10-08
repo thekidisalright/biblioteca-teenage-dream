@@ -89,7 +89,7 @@ if(isset($_POST['email']) || isset($_POST['senha']) || isset($_POST['nome']) || 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/bootstrap.css">
-  <link rel="stylesheet" href="./css/style-cadastro.css">
+  <link rel="stylesheet" href="./css/cadastro.css">
   <link rel="shortcut icon" href="./images/icone-teenage-dream.png" type="image/x-icon">
   <title>Cadastro - Teenage Dream</title>
 </head>
