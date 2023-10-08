@@ -1,7 +1,7 @@
 <?php
 
 $usuario = "root";
-$senha = "root";
+$senha = "";
 $banco = "db_biblioteca";
 $host = "localhost";
 

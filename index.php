@@ -32,28 +32,37 @@ if(isset($_POST['email']) || isset($_POST['senha']))
     $email = $mysqli->real_escape_string($_POST['email']);
     $senha = $mysqli->real_escape_string($_POST['senha']);
 
-    $sql_code = "SELECT * FROM tb_usuario WHERE email_usuario = '$email' AND senha_usuario = '$senha'";
+    $sql_code = "SELECT * FROM tb_usuario WHERE email_usuario = '$email'";
     $sql_query = $mysqli->query($sql_code) or die("Falha na execução do código SQL: " . $mysqli->error);
 
     $quantidadeResultado = $sql_query->num_rows;
 
     if($quantidadeResultado == 1)
     {
-
-      $usuario = $sql_query->fetch_assoc();
-
-      if(!isset($_SESSION))
+      if(password_verify($senha, $row['senha_usuario']))
       {
-        session_start();
+        $usuario = $sql_query->fetch_assoc();
+
+        if(!isset($_SESSION))
+        {
+          session_start();
+        }
+
+        $_SESSION['cd_usuario'] = $usuario['cd_usuario'];
+        $_SESSION['pnm_usuario'] = $usuario['pnm_usuario'];
+        $_SESSION['ds_usuario'] = $usuario['ds_usuario'];
+        $_SESSION['email_usuario'] = $usuario['email_usuario'];
+        $_SESSION['privilegio'] = $usuario['privilegio'];
+
+        header("Location: ./home.php");
       }
-
-      $_SESSION['cd_usuario'] = $usuario['cd_usuario'];
-      $_SESSION['pnm_usuario'] = $usuario['pnm_usuario'];
-      $_SESSION['ds_usuario'] = $usuario['ds_usuario'];
-      $_SESSION['email_usuario'] = $usuario['email_usuario'];
-      $_SESSION['privilegio'] = $usuario['privilegio'];
-
-      header("Location: ./home.php");
+      else
+      {
+        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>E-mail ou senha fodidos!
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>";
+      }
+      
 
     }
     else

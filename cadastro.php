@@ -47,6 +47,7 @@ if(isset($_POST['email']) || isset($_POST['senha']) || isset($_POST['nome']) || 
     $sobrenome = $mysqli->real_escape_string($_POST['sobrenome']);
     $email = $mysqli->real_escape_string($_POST['email']);
     $senha = $mysqli->real_escape_string($_POST['senha']);
+    $senha = password_hash($senha, PASSWORD_DEFAULT);
 
     $sql_code = "SELECT * FROM tb_usuario WHERE email_usuario = '$email'";
     $sql_verificar = $mysqli->query($sql_code) or die("Falha na execução do código SQL: " . $mysqli->error);
@@ -59,11 +60,12 @@ if(isset($_POST['email']) || isset($_POST['senha']) || isset($_POST['nome']) || 
     }
     else
     {
-      $sql_inserir = "INSERT INTO tb_usuario (pnm_usuario, snm_usuario, email_usuario, senha_usuario) VALUES ('$nome', '$sobrenome', '$email', '$senha')";
+      $sql_inserir = "INSERT INTO tb_usuario (pnm_usuario, sbnm_usuario, email_usuario, senha_usuario) VALUES ('$nome', '$sobrenome', '$email', '$senha')";
       $sql_query = $mysqli->query($sql_inserir) or die("Falha na execução do código SQL: " . $mysqli->error);
       if($sql_query)
       {
-        $sql_update = "UPDATE tb_usuario SET privilegio = 'especial' WHERE email_usuario LIKE '%@etec.sp.gov.br'";
+        $sql_update = "UPDATE tb_usuario SET privilegio = 'admin' WHERE email_usuario LIKE '%@etec.sp.gov.br'";
+        $sql_query = $mysqli->query($sql_update) or die("Falha na execução do código SQL: " . $mysqli->error);
         echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>Usuário cadastrado com sucesso!
         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
         </div>";
@@ -114,7 +116,7 @@ if(isset($_POST['email']) || isset($_POST['senha']) || isset($_POST['nome']) || 
             <h1 class="fw-semibold">Olá &#x1F44B;</h1>
             <p>Seja bem-vindo a Biblioteca Virtual Teenage Dream</p>
           </div>
-          <form action="" method="POST">
+          <form action="" method="POST" autocomplete="off">
           <div class="input-group mb-3 d-flex align-items-center">
             <label for="nome" class="fs-6 fw-regular me-3">Nome</label>
             <input type="text" name="nome" class="form-control form-control-lg fs-6 rounded-3" placeholder="Insira seu primeiro nome" maxlength="255">

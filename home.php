@@ -8,6 +8,8 @@ if (!isset($_SESSION)) {
 
 if (!isset($_SESSION['cd_usuario'])) {
   header("Location: ./index.php");
+} else if ($_SESSION['privilegio'] == 'admin') {
+  header("Location: ./admin.php");
 }
 
 $dataHoje = date("d/m/Y");
@@ -46,9 +48,6 @@ $dataHoje = date("d/m/Y");
             <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
               <li class='nav-item col-auto item-navbar'>
                 <a class='nav-link active' aria-current='page' href='#'>Início</a>
-              </li>
-              <li class='nav-item col-auto item-navbar'>
-                <a class='nav-link' href='#'>Meus Livros</a>
               </li>
               <li class='nav-item dropdown col-auto item-navbar'>
                 <a class='nav-link dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown'
@@ -93,204 +92,68 @@ $dataHoje = date("d/m/Y");
       </h1>
     </div>
 
-    <div class='row justify-content-center mb-4'>
-      <div class="card col-8 p-0">
-        <div class="card-header header-quote d-flex justify-content-between">
-          <span>Frase motivacional do dia </span>
-          <?php echo "$dataHoje"; ?>
-        </div>
-        <div class="card-body quote">
-          <blockquote class="blockquote mb-0">
-            <p>A well-known quote, contained in a blockquote element.</p>
-            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-          </blockquote>
-        </div>
-      </div>
-    </div>
-
-    <div class='row justify-content-center'>
-      <div class="card col-10 p-0">
-        <div class="col-12 d-flex rounded-top-1 header-card">
-          <h5 class="card-header col">Meus livros</h5>
-        </div>
-
-        <div class="row g-0 mb-3">
-          <div class="col-4 col-md-2 p-2 pe-0">
-            <img src="./images/livros/jogos-vorazes.jpg"
-              class="img-fluid imagem-meus-livros w-100 object-fit-contain align-self-start" alt="...">
-          </div>
-          <div class="col-8 col-md-10">
-            <div class="card-body">
-              <h6 class="card-title">Jogos Vorazes</h6>
-              <p class="card-text nome-autor">por <a href="">Suzanne Collins</a></p>
-              <p class="card-text generos"><a href="">Young Adult</a> <a href="">Ficção</a> <a href="">Fantasia</a> <a
-                  href="">Romance</a> <a href="">...mais</a></p>
-              <p class="card-text"><small class="text-body-secondary">Reservado há 8 dias 31/09/2023</small></p>
-              <p><button type="button" class="btn btn-danger">Devolver com atraso</button></p>
-              <p><button type="button" class="btn btn-primary">Sobre o livro</button></p>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <hr class="divisor col-10">
-        </div>
-
-        <div class="row g-0 mb-3">
-          <div class="col-4 col-md-2 p-2 pe-0">
-            <img src="./images/livros/percy-jackson-ladrao-de-raios.jpg"
-              class="img-fluid w-100 imagem-meus-livros object-fit-contain align-self-start" alt="...">
-          </div>
-          <div class="col-8 col-md-10">
-            <div class="card-body">
-              <h6 class="card-title">O Ladrão de Raios</h6>
-              <p class="card-text nome-autor">por <a href="">Rick Riordan</a></p>
-              <p class="card-text generos"><a href="">Fantasia</a> <a href="">Young Adult</a> <a href="">Mitologia</a>
-                <a href="">Aventura</a> <a href="">...mais</a></p>
-              <p class="card-text"><small class="text-body-secondary">Reservado há 3 dias 05/10/2023</small></p>
-              <p><button type="button" class="btn btn-success">Devolver</button></p>
-              <p><button type="button" class="btn btn-primary">Sobre o livro</button></p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class='row justify-content-center'>
-      <div class="card col-10 p-0">
-        <div class="col-12 d-flex rounded-top-1 header-card">
-          <h5 class="card-header col">Desejados</h5>
-        </div>
-
-        <div class="row g-0 mb-3">
-          <div class="col-4 col-md-2 p-2 pe-0">
-            <img src="./images/livros/nenhum.jpg"
-              class="img-fluid imagem-meus-livros w-100 object-fit-contain align-self-start" alt="...">
-          </div>
-          <div class="col-8 col-md-10">
-            <div class="card-body">
-              <h6 class="card-title">Divergente</h6>
-              <p class="card-text nome-autor">por <a href="">Veronica Roth</a></p>
-              <p class="card-text generos"><a href="">Young Adult</a> <a href="">Ficção</a> <a href="">Fantasia</a> <a
-                  href="">Romance</a> <a href="">...mais</a></p>
-              <p class="card-text"><small class="text-body-secondary">Disponível</small></p>
-              <p><button type="button" class="btn btn-success">Alocar</button></p>
-              <p><button type="button" class="btn btn-primary">Sobre o livro</button></p>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <hr class="divisor col-10">
-        </div>
-
-        <div class="row g-0 mb-3">
-          <div class="col-4 col-md-2 p-2 pe-0">
-            <img src="./images/livros/percy-jackson-ladrao-de-raios.jpg"
-              class="img-fluid w-100 imagem-meus-livros object-fit-contain align-self-start" alt="...">
-          </div>
-          <div class="col-8 col-md-10">
-            <div class="card-body">
-              <h6 class="card-title">O Ladrão de Raios</h6>
-              <p class="card-text nome-autor">por <a href="">Rick Riordan</a></p>
-              <p class="card-text generos"><a href="">Fantasia</a> <a href="">Young Adult</a> <a href="">Mitologia</a>
-                <a href="">Aventura</a> <a href="">...mais</a></p>
-              <p class="card-text"><small class="text-body-secondary">Reservado há 3 dias 05/10/2023</small></p>
-              <p><button type="button" class="btn btn-success">Devolver</button></p>
-              <p><button type="button" class="btn btn-primary">Sobre o livro</button></p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
     <div class="row d-flex align-items-center">
       <div class="label-livro col-4 col-md-2">
         <p class="text-wrap fw-bold fs-2">Meus Livros</p>
       </div>
       <section class="lista-livros col-8 col-md-10">
 
+        <?php
+        $sql_reserva = "SELECT * FROM tb_reserva WHERE cd_usuario = " . $_SESSION['cd_usuario'] . " AND dt_devolucao IS NULL";
+        $reserva = $mysqli->query($sql_reserva);
+        if($reserva->num_rows > 0)
+        {
+          foreach($reserva as $col_reserva)
+          {
+            $sql_livro = "SELECT * FROM tb_livro WHERE cd_livro = " . $col_reserva['cd_livro'];
+            $livro = $mysqli->query($sql_livro);
+            foreach($livro as $livro)
+            {
+              $nm_livro = $livro['nm_livro'];
+              echo "<p class='text-wrap fw-bold fs-2'>$nm_livro</p>";
+              echo "<p class='text-wrap fw-bold fs-2'>Autor: " . $livro['nm_autor'] . "</p>";
+            }
+          }
+        }
+        else
+        {
+          echo "<p class='text-wrap fw-bold fs-2'>Você não possui livros reservados</p>";
+        }
+
+        ?>
+
         <article class="livro">
           <header class="livro-header">
             <div class="d-flex justify-content-between">
-              <small class="fw-bold">Vence</small> 
+              <small class="fw-bold">Vence</small>
               <small>07/10/2023</small>
             </div>
-            
+
             <h2>Jogos Vorazes</h2>
           </header>
 
           <div class="d-flex mt-3">
             <div class="img-livro">
-            <img src="./images/livros/jogos-vorazes.jpg">
-          </div>
-
-          <div class="livro-autor">
-            <a href="" class="autor-avatar">
               <img src="./images/livros/jogos-vorazes.jpg">
-            </a>
-            <div class="nome-autor">
-            <div class="nome-autor-prefixo">
-              Autor(a)
             </div>
-            Suzanne Collins
-          </div>
-          </div>
+
+            <div class="livro-autor">
+              <a href="" class="autor-avatar">
+                <img src="./images/livros/jogos-vorazes.jpg">
+              </a>
+              <div class="nome-autor">
+                <div class="nome-autor-prefixo">
+                  Autor(a)
+                </div>
+                Suzanne Collins
+              </div>
+            </div>
           </div>
 
           <div class="botoes d-flex">
             <button type="button" class="btn btn-devolver rounded-pill me-4">Devolver</button>
             <button type="button" class="btn btn-sobre rounded-pill">Sobre o livro</button>
           </div>
-          
-
-          
-
-        </article>
-
-        <article class="livro">
-          <header class="livro-header">
-            <p>07/10/2023</p>
-            <h2>Andróides Sonham com Ovelhas Elétricas?</h2>
-          </header>
-        </article>
-
-        <article class="livro">
-          <header class="livro-header">
-            <p>07/10/2023</p>
-            <h2>Jogos Vorazes</h2>
-          </header>
-        </article>
-
-        <article class="livro">
-          <header class="livro-header">
-            <p>07/10/2023</p>
-            <h2>Jogos Vorazes</h2>
-          </header>
-        </article>
-        </article>
-
-        <article class="livro">
-          <header class="livro-header">
-            <p>07/10/2023</p>
-            <h2>Jogos Vorazes</h2>
-          </header>
-        </article>
-        </article>
-
-        <article class="livro">
-          <header class="livro-header">
-            <p>07/10/2023</p>
-            <h2>Jogos Vorazes</h2>
-          </header>
-        </article>
-        </article>
-
-        <article class="livro">
-          <header class="livro-header">
-            <p>07/10/2023</p>
-            <h2>Jogos Vorazes</h2>
-          </header>
         </article>
 
       </section>
