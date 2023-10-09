@@ -1,0 +1,66 @@
+.pedido{
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    border-radius: 20px !important;
+    height: 460px !important;
+    width: 296px !important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .1) !important;
+}
+
+.pedido .pedido-conteudo{
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 30px !important;
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+section .pedido .pedido-imagem{
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    height: 140px !important;
+    width: 140px !important;
+    border-radius: 50% !important;
+    padding: 3px !important;
+    background-color: var(--roxo-1) !important;
+    box-shadow: 0 -1px 4px 2px rgba(0, 0, 0, .25) !important;
+}
+
+section .pedido .pedido-imagem img{
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+    border: 3px solid var(--roxo-1) !important;
+}
+
+.box1{
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    position: absolute !important;
+    width: 100% !important;
+    height: 30% !important;
+    border-radius: 20px 20px 0 0 !important;
+    opacity: 0.9 !important;
+}
+
+.name-profession{
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin-top: 10px !important;
+}
