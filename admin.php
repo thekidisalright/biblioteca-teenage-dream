@@ -9,11 +9,7 @@ if(!isset($_SESSION))
 
 if(isset($_SESSION['cd_usuario']))
 {
-  if($_SESSION['privilegio'] == 'admin')
-  {
-    header("Location: ./admin.php");
-  }
-  else
+  if($_SESSION['privilegio'] == 'comum')
   {
     header("Location: ./home.php");
   }

@@ -13,7 +13,9 @@
 }
 
 body{
-    background-color: var(--roxo-1);
+    background-color: var(--roxo-2);
+    background-image: linear-gradient(to left bottom, #6528f7, #6d2ff8, #7536fa, #7d3dfb, #8443fd, #8b48fe, #924efe, #9853ff, #a059ff, #a75fff, #ae66ff, #b46cff);
+    background-size: cover;
     color: var(--branco);
     font-family: var(--fonte);
 }

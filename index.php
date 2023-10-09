@@ -9,71 +9,67 @@ if(!isset($_SESSION))
 
 if(isset($_SESSION['cd_usuario']))
 {
-  header("Location: ./home.php");
-}
-
-if(isset($_POST['email']) || isset($_POST['senha']))
-{
-
-  if(strlen($_POST['email']) == 0)
+  if($_SESSION['privilegio'] == 'admin')
   {
-    echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>Preencha seu e-mail!
-    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-    </div>";
-  }
-  else if(strlen($_POST['senha']) == 0)
-  {
-    echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>Preencha sua senha!
-    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-    </div>";
+    header("Location: ./admin.php");
   }
   else
   {
-    $email = $mysqli->real_escape_string($_POST['email']);
-    $senha = $mysqli->real_escape_string($_POST['senha']);
+    header("Location: ./home.php");
+  }
+}
 
-    $sql_code = "SELECT * FROM tb_usuario WHERE email_usuario = '$email'";
-    $sql_query = $mysqli->query($sql_code) or die("Falha na execução do código SQL: " . $mysqli->error);
-
-    $quantidadeResultado = $sql_query->num_rows;
-
-    if($quantidadeResultado == 1)
+if(isset($_POST['email']) || isset($_POST['senha']))
     {
-      if(password_verify($senha, $row['senha_usuario']))
-      {
-        $usuario = $sql_query->fetch_assoc();
 
-        if(!isset($_SESSION))
-        {
-          session_start();
-        }
-
-        $_SESSION['cd_usuario'] = $usuario['cd_usuario'];
-        $_SESSION['pnm_usuario'] = $usuario['pnm_usuario'];
-        $_SESSION['ds_usuario'] = $usuario['ds_usuario'];
-        $_SESSION['email_usuario'] = $usuario['email_usuario'];
-        $_SESSION['privilegio'] = $usuario['privilegio'];
-
-        header("Location: ./home.php");
-      }
-      else
-      {
-        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>E-mail ou senha fodidos!
+    if(strlen($_POST['email']) == 0)
+    {
+        echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>Preencha seu e-mail!
         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
         </div>";
-      }
-      
-
+    }
+    else if(strlen($_POST['senha']) == 0)
+    {
+        echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>Preencha sua senha!
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>";
     }
     else
     {
-      echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>E-mail ou senha incorretos!
-      <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-      </div>";
-    }
+        $email = $mysqli->real_escape_string($_POST['email']);
+        $senha = $mysqli->real_escape_string($_POST['senha']);
 
-  }
-}
+        $sql_code = "SELECT * FROM tb_usuario WHERE email_usuario = '$email' AND senha_usuario = '$senha'";
+        $sql_query = $mysqli->query($sql_code) or die("Falha na execução do código SQL: " . $mysqli->error);
+
+        $quantidadeResultado = $sql_query->num_rows;
+
+        if($quantidadeResultado == 1)
+        {
+            $usuario = $sql_query->fetch_assoc();
+
+            if(!isset($_SESSION))
+            {
+            session_start();
+            }
+
+            $_SESSION['cd_usuario'] = $usuario['cd_usuario'];
+            $_SESSION['pnm_usuario'] = $usuario['pnm_usuario'];
+            $_SESSION['ds_usuario'] = $usuario['ds_usuario'];
+            $_SESSION['email_usuario'] = $usuario['email_usuario'];
+            $_SESSION['privilegio'] = $usuario['privilegio'];
+
+            header("Location: ./home.php");
+        }
+        else
+        {
+        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>E-mail ou senha incorretos!
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>";
+        }
+
+    }
+    }
 
 ?>
 
@@ -109,6 +105,7 @@ if(isset($_POST['email']) || isset($_POST['senha']))
             <p>Estamos felizes que você voltou.</p>
           </div>
           <form action="" method="POST">
+          <input type="hidden" value="login" name="acao">
           <div class="input-group mb-3 d-flex align-items-center">
             <label for="email" class="fs-6 fw-regular me-3">E-mail</label>
             <input type="email" name="email" class="form-control form-control-lg fs-6 rounded-3" placeholder="Insira um e-mail">
