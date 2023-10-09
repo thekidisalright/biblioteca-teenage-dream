@@ -31,7 +31,7 @@ else
   <link rel='stylesheet' href='./css/style.css' />
   <link rel="shortcut icon" href="./images/icone-teenage-dream.png" type="image/x-icon">
   <link rel="stylesheet" href="./css/card.css">
-  <title>Início - Teenage Dream</title>
+  <title>Administrador</title>
 </head>
 
 <body class="admin">
@@ -56,13 +56,6 @@ else
                 <a class='nav-link active' aria-current='page' href='#'>Início</a>
               </li>
             </ul>
-            <form class='d-flex' role='search' method="POST" action="./pesquisa.php">
-              <input class='form-control me-2 rounded-pill input-pesquisa' type='search' placeholder='Pesquisar'
-                aria-label='Search' name="pesquisa" minlength="3" />
-              <button class='btn botao rounded-pill' type='submit'>
-                Pesquisar
-              </button>
-            </form>
             <a class='nav-link mx-md-3 logoutBotao' href='./logout.php'>Logout</a>
           </div>
         </div>
@@ -78,7 +71,7 @@ else
 
     <div class="row justify-content-center">
         <div class="label-menu col-6 col-md-3 d-flex flex-column justify-content-between mb-4">
-            <span class="text-wrap fw-bold fs-2 col-12">Reservar</span>
+            <span class="text-wrap fw-bold fs-2 col-12">Reservas</span>
             <a href="./reserva.php">
                 <button type="button" class="btn rounded-pill label-menu-botao">
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24">

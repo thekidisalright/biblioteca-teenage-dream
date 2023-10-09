@@ -93,26 +93,67 @@ $dataHoje = date("d/m/Y");
     </div>
 
     <div class="row d-flex align-items-center">
-      <div class="label-livro col-4 col-md-2">
+      <div class="label-livro col-4 col-md-auto">
         <p class="text-wrap fw-bold fs-2">Meus Livros</p>
       </div>
-      <section class="lista-livros col-8 col-md-10">
+      <section class="lista-livros col-8 col-md">
 
         <?php
-        $sql_reserva = "SELECT * FROM tb_reserva WHERE cd_usuario = " . $_SESSION['cd_usuario'] . " AND dt_devolucao IS NULL";
-        $reserva = $mysqli->query($sql_reserva);
-        if($reserva->num_rows > 0)
+        $sql_emprestimo = "SELECT * FROM tb_emprestimo WHERE cd_usuario = " . $_SESSION['cd_usuario'] . " AND dt_devolucao IS NULL";
+        $emprestimo = $mysqli->query($sql_emprestimo);
+        if($emprestimo->num_rows > 0)
         {
-          foreach($reserva as $col_reserva)
+          foreach($emprestimo as $col_emprestimo)
           {
-            $sql_livro = "SELECT * FROM tb_livro WHERE cd_livro = " . $col_reserva['cd_livro'];
+            $dt_emprestimo = new DateTime($col_emprestimo['dt_emprestimo']);
+            $dt_emprestimo->add(new DateInterval('P15D'));
+            $dt_vencimento = $dt_emprestimo->format('d/m/Y');
+            $sql_livro = "SELECT * FROM tb_livro WHERE cd_livro = " . $col_emprestimo['cd_copia'];
             $livro = $mysqli->query($sql_livro);
-            foreach($livro as $livro)
-            {
-              $nm_livro = $livro['nm_livro'];
-              echo "<p class='text-wrap fw-bold fs-2'>$nm_livro</p>";
-              echo "<p class='text-wrap fw-bold fs-2'>Autor: " . $livro['nm_autor'] . "</p>";
-            }
+            $livro->data_seek(0);
+            $livro = $livro->fetch_assoc();
+            $nm_livro = $livro['nm_livro'];
+            $img_livro = $livro['img_livro'];
+              $sql_autor = "SELECT a.nm_autor, a.img_autor FROM tb_autor as a INNER JOIN tb_livro_autor as la ON a.cd_autor = la.cd_autor WHERE la.cd_livro = " . $livro['cd_livro'];
+              $autor = $mysqli->query($sql_autor);
+                $autor->data_seek(0);
+                $row = $autor->fetch_assoc();
+                $nm_autor = $row['nm_autor'];
+                $img_autor = $row['img_autor'];
+            
+            echo "
+              <article class='livro'>
+                <header class='livro-header'>
+                  <div class='d-flex justify-content-between'>
+                    <small class='fw-bold'>Vence</small>
+                    <small>$dt_vencimento</small>
+                  </div>
+                  <h2>$nm_livro</h2>
+                </header>
+                <div class='d-flex mt-3'>
+                  <div class='img-livro'>
+                    <img src='$img_livro'>
+                  </div>
+                  <div class='livro-autor'>
+                    <div class='autor-avatar'>
+                      <img src='$img_autor'>
+                    </div>
+                    <div class='nome-autor'>
+                      <div class='nome-autor-prefixo'>
+                        Autor(a)
+                      </div>
+                      $nm_autor
+                    </div>
+                  </div>
+                </div>
+      
+                <div class='botoes d-flex'>
+                  <button type='button' class='btn btn-devolver rounded-pill me-4'>Devolver</button>
+                  <button type='button' class='btn btn-sobre rounded-pill'>Sobre o livro</button>
+                </div>
+              </article>
+            ";
+            
           }
         }
         else
@@ -122,39 +163,7 @@ $dataHoje = date("d/m/Y");
 
         ?>
 
-        <article class="livro">
-          <header class="livro-header">
-            <div class="d-flex justify-content-between">
-              <small class="fw-bold">Vence</small>
-              <small>07/10/2023</small>
-            </div>
-
-            <h2>Jogos Vorazes</h2>
-          </header>
-
-          <div class="d-flex mt-3">
-            <div class="img-livro">
-              <img src="./images/livros/jogos-vorazes.jpg">
-            </div>
-
-            <div class="livro-autor">
-              <a href="" class="autor-avatar">
-                <img src="./images/livros/jogos-vorazes.jpg">
-              </a>
-              <div class="nome-autor">
-                <div class="nome-autor-prefixo">
-                  Autor(a)
-                </div>
-                Suzanne Collins
-              </div>
-            </div>
-          </div>
-
-          <div class="botoes d-flex">
-            <button type="button" class="btn btn-devolver rounded-pill me-4">Devolver</button>
-            <button type="button" class="btn btn-sobre rounded-pill">Sobre o livro</button>
-          </div>
-        </article>
+        
 
       </section>
 

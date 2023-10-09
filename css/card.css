@@ -41,10 +41,11 @@
     border-radius: 16px;
     background: var(--rosa);
     color: var(--preto);
-    
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    box-shadow: -1rem 0 3rem var(--roxo-1);
+}
+
+.label-livro p{
+    word-wrap: break-word;
 }
 
 .livro:hover{
@@ -114,9 +115,10 @@
     .img-livro{
         display: none;
     }
-    .label-livro span{
-        font-size: 2rem;
+    .label-livro p{
+        font-size: 1.7rem !important;
     }
+
 }
 
 .livro-header h2{
