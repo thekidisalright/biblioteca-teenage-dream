@@ -49,28 +49,8 @@ $dataHoje = date("d/m/Y");
               <li class='nav-item col-auto item-navbar'>
                 <a class='nav-link active' aria-current='page' href='#'>Início</a>
               </li>
-              <li class='nav-item dropdown col-auto item-navbar'>
-                <a class='nav-link dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown'
-                  aria-expanded='false'>
-                  Biblioteca
-                </a>
-                <ul class='dropdown-menu dropdown-navbar'>
-                  <li>
-                    <a class='dropdown-item' href='#'>Todos os livros</a>
-                  </li>
-                  <li>
-                    <hr class='dropdown-divider' />
-                  </li>
-                  <li>
-                    <a class='dropdown-item' href='#'>Autores</a>
-                  </li>
-                  <li>
-                    <a class='dropdown-item' href='#'>Editoras</a>
-                  </li>
-                  <li>
-                    <a class='dropdown-item' href='#'>Gêneros</a>
-                  </li>
-                </ul>
+              <li class='nav-item col-auto item-navbar'>
+                <a class='nav-link' aria-current='page' href='#'>Todos os livros</a>
               </li>
             </ul>
             <form class='d-flex' role='search' method="POST" action="./pesquisa.php">
@@ -108,20 +88,21 @@ $dataHoje = date("d/m/Y");
             $dt_emprestimo = new DateTime($col_emprestimo['dt_emprestimo']);
             $dt_emprestimo->add(new DateInterval('P15D'));
             $dt_vencimento = $dt_emprestimo->format('d/m/Y');
-            $sql_livro = "SELECT * FROM tb_livro WHERE cd_livro = " . $col_emprestimo['cd_copia'];
+            $sql_livro = "SELECT * FROM tb_livro WHERE cd_livro = " . $col_emprestimo['cd_livro'];
             $livro = $mysqli->query($sql_livro);
             $livro->data_seek(0);
             $livro = $livro->fetch_assoc();
             $nm_livro = $livro['nm_livro'];
             $img_livro = $livro['img_livro'];
-              $sql_autor = "SELECT a.nm_autor, a.img_autor FROM tb_autor as a INNER JOIN tb_livro_autor as la ON a.cd_autor = la.cd_autor WHERE la.cd_livro = " . $livro['cd_livro'];
-              $autor = $mysqli->query($sql_autor);
-                $autor->data_seek(0);
-                $row = $autor->fetch_assoc();
-                $nm_autor = $row['nm_autor'];
-                $img_autor = $row['img_autor'];
+            $sql_autor = "SELECT * FROM tb_autor WHERE cd_autor = " . $livro['cd_autor'];
+            $autor = $mysqli->query($sql_autor);
+            $autor->data_seek(0);
+            $autor = $autor->fetch_assoc();
+            $nm_autor = $autor['nm_autor'];
+            $img_autor = $autor['img_autor'];
             
             echo "
+            
               <article class='livro'>
                 <header class='livro-header'>
                   <div class='d-flex justify-content-between'>
@@ -146,11 +127,17 @@ $dataHoje = date("d/m/Y");
                     </div>
                   </div>
                 </div>
-      
+                
                 <div class='botoes d-flex'>
-                  <button type='button' class='btn btn-devolver rounded-pill me-4'>Devolver</button>
-                  <button type='button' class='btn btn-sobre rounded-pill'>Sobre o livro</button>
+                <form action='./queries.php' method='POST'>
+                <input type='hidden' name='cd_emprestimo' value='" . $col_emprestimo['cd_emprestimo'] . "'>
+                <input type='hidden' name='cd_livro' value='" . $col_emprestimo['cd_livro'] . "'>
+      
+                  <button type='submit' name='devolver' class='btn btn-devolver rounded-pill me-4'>Devolver</button>
+                  </form>
                 </div>
+                
+            
               </article>
             ";
             
@@ -158,7 +145,7 @@ $dataHoje = date("d/m/Y");
         }
         else
         {
-          echo "<p class='text-wrap fw-bold fs-2'>Você não possui livros reservados</p>";
+          echo "<p class='text-wrap fw-bold fs-2'>Você não possui empréstimos ativos</p>";
         }
 
         ?>
@@ -168,6 +155,161 @@ $dataHoje = date("d/m/Y");
       </section>
 
     </div>
+
+    <div class="row d-flex align-items-center mt-5">
+      <div class="label-livro col-4 col-md-auto">
+        <p class="text-wrap fw-bold fs-2">Meus Pedidos</p>
+      </div>
+      <section class="lista-livros col-8 col-md">
+
+        <?php
+        $sql_pedido = "SELECT * FROM tb_pedido WHERE cd_usuario = " . $_SESSION['cd_usuario'];
+        $pedido = $mysqli->query($sql_pedido);
+        if($pedido->num_rows > 0)
+        {
+          foreach($pedido as $col_pedido)
+          {
+            $sql_livro = "SELECT * FROM tb_livro WHERE cd_livro = " . $col_pedido['cd_livro'];
+            $livro = $mysqli->query($sql_livro);
+            $livro->data_seek(0);
+            $livro = $livro->fetch_assoc();
+            $nm_livro = $livro['nm_livro'];
+            $img_livro = $livro['img_livro'];
+            $sql_autor = "SELECT * FROM tb_autor WHERE cd_autor = " . $livro['cd_autor'];
+            $autor = $mysqli->query($sql_autor);
+            $autor->data_seek(0);
+            $autor = $autor->fetch_assoc();
+            $nm_autor = $autor['nm_autor'];
+            $img_autor = $autor['img_autor'];
+            
+            echo "
+            
+              <article class='livro'>
+                <header class='livro-header'>
+                  <div class='d-flex justify-content-between'>
+                    <small class='fw-bold'>Pedido em</small>
+                    <small>" . date('d/m/Y', strtotime($col_pedido['dt_pedido'])) . "</small>
+                  </div>
+                  <h2>$nm_livro</h2>
+                </header>
+                <div class='d-flex mt-3'>
+                  <div class='img-livro'>
+                    <img src='$img_livro'>
+                  </div>
+                  <div class='livro-autor'>
+                    <div class='autor-avatar'>
+                      <img src='$img_autor'>
+                    </div>
+                    <div class='nome-autor'>
+                      <div class='nome-autor-prefixo'>
+                        Autor(a)
+                      </div>
+                      $nm_autor
+                    </div>
+                    </div>
+                </div>
+                
+                <div class='botoes d-flex'>
+                <form action='./queries.php' method='POST'>
+                <input type='hidden' name='cd_pedido' value='" . $col_pedido['cd_pedido'] . "'>
+                <input type='hidden' name='cd_livro' value='" . $col_pedido['cd_livro'] . "'>
+      
+                  <button type='submit' name='cancelar' class='btn btn-devolver rounded-pill me-4'>Cancelar Pedido</button>
+                  </form>
+                </div>
+                
+            
+              </article>
+            ";
+            
+          }
+        }
+        else
+        {
+          echo "<p class='text-wrap fw-bold fs-2'>Você não possui pedidos</p>";
+        }
+
+    ?>
+    </section>
+    </div>
+
+        <div class="row d-flex align-items-center mt-5">
+          <div class="label-livro col-4 col-md-auto">
+            <p class="text-wrap fw-bold fs-2">Livros disponíveis</p>
+          </div>
+          <section class="lista-livros col-8 col-md">
+
+            <?php
+            $sql_livro = "SELECT * FROM tb_livro WHERE disponivel = 1";
+            $livro = $mysqli->query($sql_livro);
+            if($livro->num_rows > 0)
+            {
+              foreach($livro as $col_livro)
+              {
+                $sql_autor = "SELECT * FROM tb_autor WHERE cd_autor = " . $col_livro['cd_autor'];
+                $autor = $mysqli->query($sql_autor);
+                $autor->data_seek(0);
+                $autor = $autor->fetch_assoc();
+                $nm_autor = $autor['nm_autor'];
+                $img_autor = $autor['img_autor'];
+                
+                echo "
+                
+                  <article class='livro'>
+                    <header class='livro-header'>
+                      <h2>" . $col_livro['nm_livro'] . "</h2>
+                    </header>
+                    <div class='d-flex mt-3'>
+                      <div class='img-livro'>
+                        <img src='" . $col_livro['img_livro'] . "'>
+                      </div>
+                      <div class='livro-autor'>
+                        <div class='autor-avatar'>
+                          <img src='$img_autor'>
+                        </div>
+                        <div class='nome-autor'>
+                          <div class='nome-autor-prefixo'>
+                            Autor(a)
+                          </div>
+                          $nm_autor
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class='botoes d-flex'>
+                    <form action='./queries.php' method='POST'>
+                    <input type='hidden' name='cd_livro' value='" . $col_livro['cd_livro'] . "'>
+                    <input type='hidden' name='cd_usuario' value='" . $_SESSION['cd_usuario'] . "'>
+          
+                      <button type='submit' name='reservar' class='btn btn-reservar rounded-pill me-4'>Reservar</button>
+                      </form>
+                    </div>
+                    
+                
+                  </article>
+                ";
+                
+              }
+            }
+            else
+            {
+              echo "<p class='text-wrap fw-bold fs-2'>Não há livros disponíveis</p>";
+            }
+            
+            ?>
+            </section>
+            </div>
+
+          <div class="row d-flex align-items-center mt-5 justify-content-center justify-content-md-between">
+           <div class="row">
+            <h1 class="text-wrap fw-bold">Todos os livros</h1>
+            </div>
+            <div class="row">
+              <div class="col-md-2 col-5 todos-livros">
+                <img src="./images/livros/jogos-vorazes.jpg" class="w-100">
+              </div>
+            </div>
+          </div>
 
 
   </div>

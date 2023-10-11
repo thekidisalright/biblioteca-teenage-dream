@@ -14,7 +14,7 @@
 
 body{
     background-color: var(--roxo-2);
-    background-image: linear-gradient(to left bottom, #6528f7, #6d2ff8, #7536fa, #7d3dfb, #8443fd, #8b48fe, #924efe, #9853ff, #a059ff, #a75fff, #ae66ff, #b46cff);
+    background-image: linear-gradient(to right, #6528f7, #6d2ff8, #7536fa, #7d3dfb, #8443fd, #8443fd, #8443fd, #8443fd, #7d3dfb, #7536fa, #6d2ff8, #6528f7);
     background-size: cover;
     color: var(--branco);
     font-family: var(--fonte);
@@ -197,4 +197,13 @@ body{
     .label-menu span{
         font-size: 2rem;
     }
+}
+
+.todos-livros{
+    aspect-ratio: 667/1000 !important;
+    border-radius: 25px !important;
+}
+
+.todos-livros img{
+    object-fit: cover;
 }

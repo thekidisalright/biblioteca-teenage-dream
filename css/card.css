@@ -93,7 +93,7 @@
     height: 150px;
 }
 
-.btn-devolver{
+.btn-devolver, .btn-reservar{
     font-size: smaller;
     background-color: var(--branco) !important;
     color: var(--preto) !important;
