@@ -62,7 +62,7 @@ if(isset($_POST['pesquisa']))
                 <a class='nav-link' aria-current='page' href='./home.php'>Início</a>
               </li>
               <li class='nav-item col-auto item-navbar'>
-                <a class='nav-link active' aria-current='page' href='#'>Todos os livros</a>
+                <a class='nav-link' aria-current='page' href='./todos.php'>Todos os livros</a>
               </li>
             </ul>
             <form class='d-flex' role='search' method="POST" action="./pesquisa.php">
@@ -128,6 +128,14 @@ if(isset($_POST['pesquisa']))
 
 </div>
 </div>
+
+<footer class=" d-flex mt-5 justify-content-center">
+    <div class="text-center rounded-pill w-100">
+        <span class="text-wrap fw-bold">Teenage Dream por Alexandre Silva © 2023</span>
+    </div>
+</footer>
 </div>
+
+<script src="./js/bootstrap.bundle.js"></script>
 </body>
 </html>

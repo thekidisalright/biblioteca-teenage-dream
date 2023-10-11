@@ -38,6 +38,7 @@ $cor = "background-image: linear-gradient(to bottom, $color1, $color2, $color3);
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/card.css">
     <link rel="stylesheet" href="./css/reserva.css">
+    <link rel="shortcut icon" href="./images/icone-teenage-dream.png" type="image/x-icon">
     <title>Criar reserva</title>
 </head>
 <body class="reserva">
@@ -59,7 +60,7 @@ $cor = "background-image: linear-gradient(to bottom, $color1, $color2, $color3);
           <div class='collapse navbar-collapse collapse-navbar' id='navbarSupportedContent'>
             <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
               <li class='nav-item col-auto item-navbar'>
-                <a class='nav-link active' aria-current='page' href='#'>Início</a>
+                <a class='nav-link active' aria-current='page' href='./admin.php'>Início</a>
               </li>
             </ul>
             <a class='nav-link mx-md-3 logoutBotao' href='./logout.php'>Logout</a>
@@ -168,6 +169,12 @@ else {
     </div>
     </div>
 
+    <footer class=" d-flex mt-5 justify-content-center">
+    <div class="text-center rounded-pill w-100">
+        <span class="text-wrap fw-bold">Teenage Dream por Alexandre Silva © 2023</span>
+    </div>
+</footer>
+</div>
 </div>
 
 </body>

@@ -237,3 +237,16 @@ body{
         font-size: 10px !important;
     }
  }
+
+footer > div{
+    background-color: var(--rosa) !important;
+    color: var(--branco) !important;
+}
+
+.botao-cadastro{
+    background-color: var(--rosa) !important;
+    color: var(--branco) !important;
+    border-radius: 20px !important;
+    font-weight: 700 !important;
+    width: 100% !important;
+}

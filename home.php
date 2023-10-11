@@ -81,10 +81,8 @@ $dataHoje = date("d/m/Y");
         <?php
         $sql_emprestimo = "SELECT * FROM tb_emprestimo WHERE cd_usuario = " . $_SESSION['cd_usuario'] . " AND dt_devolucao IS NULL";
         $emprestimo = $mysqli->query($sql_emprestimo);
-        if($emprestimo->num_rows > 0)
-        {
-          foreach($emprestimo as $col_emprestimo)
-          {
+        if ($emprestimo->num_rows > 0) {
+          foreach ($emprestimo as $col_emprestimo) {
             $dt_emprestimo = new DateTime($col_emprestimo['dt_emprestimo']);
             $dt_emprestimo->add(new DateInterval('P15D'));
             $dt_vencimento = $dt_emprestimo->format('d/m/Y');
@@ -100,7 +98,7 @@ $dataHoje = date("d/m/Y");
             $autor = $autor->fetch_assoc();
             $nm_autor = $autor['nm_autor'];
             $img_autor = $autor['img_autor'];
-            
+
             echo "
             
               <article class='livro'>
@@ -140,17 +138,15 @@ $dataHoje = date("d/m/Y");
             
               </article>
             ";
-            
+
           }
-        }
-        else
-        {
+        } else {
           echo "<p class='text-wrap fw-bold fs-2'>Você não possui empréstimos ativos</p>";
         }
 
         ?>
 
-        
+
 
       </section>
 
@@ -165,10 +161,8 @@ $dataHoje = date("d/m/Y");
         <?php
         $sql_pedido = "SELECT * FROM tb_pedido WHERE cd_usuario = " . $_SESSION['cd_usuario'];
         $pedido = $mysqli->query($sql_pedido);
-        if($pedido->num_rows > 0)
-        {
-          foreach($pedido as $col_pedido)
-          {
+        if ($pedido->num_rows > 0) {
+          foreach ($pedido as $col_pedido) {
             $sql_livro = "SELECT * FROM tb_livro WHERE cd_livro = " . $col_pedido['cd_livro'];
             $livro = $mysqli->query($sql_livro);
             $livro->data_seek(0);
@@ -181,7 +175,7 @@ $dataHoje = date("d/m/Y");
             $autor = $autor->fetch_assoc();
             $nm_autor = $autor['nm_autor'];
             $img_autor = $autor['img_autor'];
-            
+
             echo "
             
               <article class='livro'>
@@ -221,39 +215,35 @@ $dataHoje = date("d/m/Y");
             
               </article>
             ";
-            
+
           }
-        }
-        else
-        {
+        } else {
           echo "<p class='text-wrap fw-bold fs-2'>Você não possui pedidos</p>";
         }
 
-    ?>
-    </section>
+        ?>
+      </section>
     </div>
 
-        <div class="row d-flex align-items-center mt-5">
-          <div class="label-livro col-4 col-md-auto">
-            <p class="text-wrap fw-bold fs-2">Livros disponíveis</p>
-          </div>
-          <section class="lista-livros col-8 col-md">
+    <div class="row d-flex align-items-center mt-5">
+      <div class="label-livro col-4 col-md-auto">
+        <p class="text-wrap fw-bold fs-2">Livros disponíveis</p>
+      </div>
+      <section class="lista-livros col-8 col-md">
 
-            <?php
-            $sql_livro = "SELECT * FROM tb_livro WHERE disponivel = 1";
-            $livro = $mysqli->query($sql_livro);
-            if($livro->num_rows > 0)
-            {
-              foreach($livro as $col_livro)
-              {
-                $sql_autor = "SELECT * FROM tb_autor WHERE cd_autor = " . $col_livro['cd_autor'];
-                $autor = $mysqli->query($sql_autor);
-                $autor->data_seek(0);
-                $autor = $autor->fetch_assoc();
-                $nm_autor = $autor['nm_autor'];
-                $img_autor = $autor['img_autor'];
-                
-                echo "
+        <?php
+        $sql_livro = "SELECT * FROM tb_livro WHERE disponivel = 1";
+        $livro = $mysqli->query($sql_livro);
+        if ($livro->num_rows > 0) {
+          foreach ($livro as $col_livro) {
+            $sql_autor = "SELECT * FROM tb_autor WHERE cd_autor = " . $col_livro['cd_autor'];
+            $autor = $mysqli->query($sql_autor);
+            $autor->data_seek(0);
+            $autor = $autor->fetch_assoc();
+            $nm_autor = $autor['nm_autor'];
+            $img_autor = $autor['img_autor'];
+
+            echo "
                 
                   <article class='livro'>
                     <header class='livro-header'>
@@ -288,32 +278,28 @@ $dataHoje = date("d/m/Y");
                 
                   </article>
                 ";
-                
-              }
-            }
-            else
-            {
-              echo "<p class='text-wrap fw-bold fs-2'>Não há livros disponíveis</p>";
-            }
-            
-            ?>
-            </section>
-            </div>
 
-          <div class="row d-flex align-items-center mt-5 justify-content-center justify-content-md-between">
-           <div class="row">
-            <h1 class="text-wrap fw-bold">Todos os livros</h1>
-            </div>
-            <div class="row">
-              <?php
-              $sql_livro = "SELECT * FROM tb_livro";
-              $livro = $mysqli->query($sql_livro);
-              if($livro->num_rows > 0)
-              {
-                foreach($livro as $col_livro)
-                {
-                  $img_livro = $col_livro['img_livro'];
-                  echo "
+          }
+        } else {
+          echo "<p class='text-wrap fw-bold fs-2'>Não há livros disponíveis</p>";
+        }
+
+        ?>
+      </section>
+    </div>
+
+    <div class="row d-flex align-items-center mt-5 justify-content-center justify-content-md-between">
+      <div class="row">
+        <h1 class="text-wrap fw-bold">Todos os livros</h1>
+      </div>
+      <div class="row">
+        <?php
+        $sql_livro = "SELECT * FROM tb_livro";
+        $livro = $mysqli->query($sql_livro);
+        if ($livro->num_rows > 0) {
+          foreach ($livro as $col_livro) {
+            $img_livro = $col_livro['img_livro'];
+            echo "
                   <div class='col-md-2 col-3 todos-livros mx-3'>
                     <div class='position-relative'>
                       <img src='$img_livro'>
@@ -328,19 +314,22 @@ $dataHoje = date("d/m/Y");
                     </div>
                   </div>
                   ";
-                  
-                }
-              }
-              else
-              {
-                echo "<p class='text-wrap fw-bold fs-2'>Não há livros na biblioteca virtual</p>";
-              }
-              
-              ?>
-            </div>
-          </div>
 
+          }
+        } else {
+          echo "<p class='text-wrap fw-bold fs-2'>Não há livros na biblioteca virtual</p>";
+        }
 
+        ?>
+      </div>
+    </div>
+
+    <footer class=" d-flex mt-5 justify-content-center">
+      <div class="text-center rounded-pill w-100">
+        <span class="text-wrap fw-bold">Teenage Dream por Alexandre Silva © 2023</span>
+      </div>
+    </footer>
+  </div>
   </div>
 
   <script src='./js/bootstrap.bundle.js'></script>

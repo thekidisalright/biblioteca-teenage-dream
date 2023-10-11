@@ -82,7 +82,7 @@ else
         </div>
         <div class="label-menu col-6 col-md-3 d-flex flex-column justify-content-between mb-4">
             <span class="text-wrap fw-bold fs-2 col-12">Cadastrar</span>
-            <a href="./cadastro.php">
+            <a href="./cadastrar.php">
                 <button type="button" class="btn rounded-pill label-menu-botao">
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24">
                     <path d="M 15.5 4 A 0.5 0.5 0 0 0 15 4.5 L 15 9 L 4 9 C 2.895 9 2 9.895 2 11 L 2 12 L 2 13 C 2 14.105 2.895 15 4 15 L 15 15 L 15 19.5 A 0.5 0.5 0 0 0 15.5 20 A 0.5 0.5 0 0 0 15.853516 19.853516 A 0.5 0.5 0 0 0 15.882812 19.822266 L 22.693359 12.720703 L 22.697266 12.716797 A 1 1 0 0 0 22.728516 12.683594 A 1 1 0 0 0 23 12 A 1 1 0 0 0 22.728516 11.316406 L 22.716797 11.302734 A 1 1 0 0 0 22.701172 11.289062 L 15.859375 4.1523438 A 0.5 0.5 0 0 1 15.857422 4.1503906 A 0.5 0.5 0 0 0 15.5 4 z"></path>
@@ -102,7 +102,12 @@ else
         </div>
     </div>
       
-
+    <footer class=" d-flex mt-5 justify-content-center">
+    <div class="text-center rounded-pill w-100">
+        <span class="text-wrap fw-bold">Teenage Dream por Alexandre Silva © 2023</span>
+    </div>
+</footer>
+</div>
 
   </div>
 
