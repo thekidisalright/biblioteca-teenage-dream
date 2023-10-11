@@ -74,6 +74,20 @@ if(isset($_POST['reservar'])){
     $cd_livro = $_POST['cd_livro'];
     $cd_usuario = $_POST['cd_usuario'];
 
+    $checkReservaQuery = "SELECT * FROM tb_pedido WHERE cd_livro = '$cd_livro' AND cd_usuario = '$cd_usuario'";
+    $checkReservaResult = $mysqli->query($checkReservaQuery);
+    $checkEmprestimoQuery = "SELECT * FROM tb_emprestimo WHERE cd_livro = '$cd_livro' AND cd_usuario = '$cd_usuario' AND dt_devolucao IS NULL";
+    $checkEmprestimoResult = $mysqli->query($checkEmprestimoQuery);
+
+    if ($checkReservaResult->num_rows > 0) {
+        echo "<script>alert('Você já reservou este livro anteriormente!')</script>";
+        echo "<script>window.location.href = './home.php'</script>";
+    } else{
+        if($checkEmprestimoResult->num_rows > 0){
+            echo "<script>alert('Você já possui um empréstimo deste livro!')</script>";
+            echo "<script>window.location.href = './home.php'</script>";
+        }
+        else{
     $dataHoje = date("Y-m-d H:i:s");
 
     $reservaInsert = "INSERT INTO tb_pedido (cd_livro, cd_usuario, dt_pedido) VALUES ('$cd_livro', '$cd_usuario', '$dataHoje')";
@@ -87,6 +101,9 @@ if(isset($_POST['reservar'])){
         echo "<script>alert('Erro ao realizar a reserva!')</script>";
         echo "<script>window.location.href = './home.php'</script>";
     }
+}
+}
+
 }
 
 if(isset($_POST['cancelar'])){

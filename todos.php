@@ -1,29 +1,17 @@
 <?php
 
-require("./conexao.php");
-
 if(!isset($_SESSION))
 {
-  session_start();
+    session_start();
 }
 
 if(!isset($_SESSION['cd_usuario']))
 {
-  header("Location: ./index.php");
+    header("Location: index.php");
+    exit();
 }
 
-if(isset($_POST['pesquisa']))
-{
-  $termoPesquisa = mysqli_real_escape_string($mysqli, $_POST['pesquisa']);
-  $sql_livro = "SELECT * FROM tb_livro WHERE nm_livro LIKE '%$termoPesquisa%'";
-  $sql_autor = "SELECT * FROM tb_autor WHERE nm_autor LIKE '%$termoPesquisa%'";
-  $resultado_livro = mysqli_query($mysqli, $sql_livro);
-  $resultado_autor = mysqli_query($mysqli, $sql_autor);
-  $quantidade_pesquisa = mysqli_num_rows($resultado_livro) + mysqli_num_rows($resultado_autor);
-  echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>Foram encontrados $quantidade_pesquisa resultados para a pesquisa <strong>$termoPesquisa</strong>!
-  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-  </div>";
-}
+require "./conexao.php";
 
 ?>
 
@@ -78,55 +66,40 @@ if(isset($_POST['pesquisa']))
       </nav>
     </div>
 
-    <div class='row mb-3'>
-      <h4>Resultados para "<?php echo $termoPesquisa; ?>": <?php echo $quantidade_pesquisa;?></h4>
-    </div>
-
-    <div class="row d-flex align-items-center mt-5 justify-content-center justify-content-md-between">
+<div class="row d-flex align-items-center mt-5 justify-content-center justify-content-md-between">
     <div class="row">
-        <h1 class="text-wrap fw-bold">Livros encontrados</h1>
+        <h1 class="text-wrap fw-bold">Todos os livros</h1>
     </div>
     <div class="row">
-          <?php
-
-          if(mysqli_num_rows($resultado_livro) > 0)
-          {
-            while($row = mysqli_fetch_assoc($resultado_livro))
-            {
-              $cd_livro = $row['cd_livro'];
-              $nm_livro = $row['nm_livro'];
-              $img_livro = $row['img_livro'];
-              $select_autor = "SELECT nm_autor FROM tb_autor WHERE cd_autor = $row[cd_autor]";
-              $resultado_autor = mysqli_query($mysqli, $select_autor);
-              $row_autor = mysqli_fetch_assoc($resultado_autor);
-              $nm_autor = $row_autor['nm_autor'];
-
-              echo "
-              <div class='col-md-2 col-3 todos-livros mx-3'>
+        <?php
+        $sql_livro = "SELECT * FROM tb_livro";
+        $livro = $mysqli->query($sql_livro);
+        if ($livro->num_rows > 0) {
+            foreach ($livro as $col_livro) {
+                $img_livro = $col_livro['img_livro'];
+                echo "
+                  <div class='col-md-2 col-3 todos-livros mx-3'>
                     <div class='position-relative'>
                       <img src='$img_livro'>
                       <div class='livro-nome position-absolute bottom-0 start-0 px-2 py-1'>
-                        <span>$nm_livro</span>
+                        <span>$col_livro[nm_livro]</span>
                       </div>
                       <form action='./queries.php' method='POST' class='position-absolute top-0 end-0'>
-                    <input type='hidden' name='cd_livro' value='" . $cd_livro . "'>
+                    <input type='hidden' name='cd_livro' value='" . $col_livro['cd_livro'] . "'>
                     <input type='hidden' name='cd_usuario' value='" . $_SESSION['cd_usuario'] . "'>
                       <button class='btn btn-pedir' name='reservar'>Reservar</button>
                         </form>
                     </div>
-                </div>
-              ";
+                  </div>
+                  ";
 
             }
-          }
-          else
-          {
-            echo "<p class='text-wrap fw-bold fs-2'>Não encontramos livros</p>";
-          }
+        } else {
+            echo "<p class='text-wrap fw-bold fs-2'>Não há livros na biblioteca virtual</p>";
+        }
 
         ?>
-
-</div>
+    </div>
 </div>
 </div>
 </body>

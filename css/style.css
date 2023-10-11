@@ -201,9 +201,39 @@ body{
 
 .todos-livros{
     aspect-ratio: 667/1000 !important;
+    padding: 0;
     border-radius: 25px !important;
+    box-shadow: -5px 0px 10px 0px rgba(0, 0, 0, 0.75) inset, -10px 10px 10px 0px rgba(0, 0, 0, 0.50);
+    
 }
 
 .todos-livros img{
-    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 20px !important;
+    object-fit: cover !important;   
 }
+
+.livro-nome{
+    background-color: var(--roxo-1) !important;
+    color: var(--branco) !important;
+    border-radius: 20px !important;
+    font-size: 14px !important;
+}
+
+.btn-pedir{
+    background-color: var(--rosa) !important;
+    color: var(--branco) !important;
+    border-radius: 20px !important;
+    font-size: 14px !important;
+}
+
+@media (max-width: 767.98px) { 
+    .livro-nome{
+        font-size: 10px !important;
+    }
+
+    .btn-pedir{
+        font-size: 10px !important;
+    }
+ }

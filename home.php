@@ -50,7 +50,7 @@ $dataHoje = date("d/m/Y");
                 <a class='nav-link active' aria-current='page' href='#'>Início</a>
               </li>
               <li class='nav-item col-auto item-navbar'>
-                <a class='nav-link' aria-current='page' href='#'>Todos os livros</a>
+                <a class='nav-link' aria-current='page' href='./todos.php'>Todos os livros</a>
               </li>
             </ul>
             <form class='d-flex' role='search' method="POST" action="./pesquisa.php">
@@ -305,9 +305,38 @@ $dataHoje = date("d/m/Y");
             <h1 class="text-wrap fw-bold">Todos os livros</h1>
             </div>
             <div class="row">
-              <div class="col-md-2 col-5 todos-livros">
-                <img src="./images/livros/jogos-vorazes.jpg" class="w-100">
-              </div>
+              <?php
+              $sql_livro = "SELECT * FROM tb_livro";
+              $livro = $mysqli->query($sql_livro);
+              if($livro->num_rows > 0)
+              {
+                foreach($livro as $col_livro)
+                {
+                  $img_livro = $col_livro['img_livro'];
+                  echo "
+                  <div class='col-md-2 col-3 todos-livros mx-3'>
+                    <div class='position-relative'>
+                      <img src='$img_livro'>
+                      <div class='livro-nome position-absolute bottom-0 start-0 px-2 py-1'>
+                        <span>$col_livro[nm_livro]</span>
+                      </div>
+                      <form action='./queries.php' method='POST' class='position-absolute top-0 end-0'>
+                    <input type='hidden' name='cd_livro' value='" . $col_livro['cd_livro'] . "'>
+                    <input type='hidden' name='cd_usuario' value='" . $_SESSION['cd_usuario'] . "'>
+                      <button class='btn btn-pedir' name='reservar'>Reservar</button>
+                        </form>
+                    </div>
+                  </div>
+                  ";
+                  
+                }
+              }
+              else
+              {
+                echo "<p class='text-wrap fw-bold fs-2'>Não há livros na biblioteca virtual</p>";
+              }
+              
+              ?>
             </div>
           </div>
 
