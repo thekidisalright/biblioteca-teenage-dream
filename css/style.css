@@ -211,7 +211,7 @@ body{
     width: 100% !important;
     height: 100% !important;
     border-radius: 20px !important;
-    object-fit: cover !important;   
+    object-fit: fill !important;
 }
 
 .livro-nome{
