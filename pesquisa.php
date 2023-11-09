@@ -42,7 +42,7 @@ if(isset($_POST['pesquisa']))
 
 <body>
   <div class='container'>
-    <div class='row mb-5 mt-3 justify-content-center'>
+  <div class='row mb-5 mt-3 justify-content-center'>
       <nav class='navbar navbar-expand-lg rounded-pill navbar-top col-11'>
         <div class='container-fluid'>
           <div class='col-auto me-4 px-3 h-75 logo-navbar d-flex rounded-pill'>
@@ -62,10 +62,10 @@ if(isset($_POST['pesquisa']))
                 <a class='nav-link' aria-current='page' href='./home.php'>Início</a>
               </li>
               <li class='nav-item col-auto item-navbar'>
-                <a class='nav-link' aria-current='page' href='./todos.php'>Todos os livros</a>
+                <a class='nav-link active' aria-current='page' href='#'>Todos os livros</a>
               </li>
             </ul>
-            <form class='d-flex' role='search' method="POST" action="./pesquisa.php">
+            <form class='d-flex' role='search' method="POST" action="./pesquisa.php" style='margin-block-end: 0 !important;'>
               <input class='form-control me-2 rounded-pill input-pesquisa' type='search' placeholder='Pesquisar'
                 aria-label='Search' name="pesquisa" minlength="3" />
               <button class='btn botao rounded-pill' type='submit'>
@@ -78,15 +78,14 @@ if(isset($_POST['pesquisa']))
       </nav>
     </div>
 
+
     <div class='row mb-3'>
       <h4>Resultados para "<?php echo $termoPesquisa; ?>": <?php echo $quantidade_pesquisa;?></h4>
     </div>
 
     <div class="row d-flex align-items-center mt-5 justify-content-center justify-content-md-between">
     <div class="row">
-        <h1 class="text-wrap fw-bold">Livros encontrados</h1>
-    </div>
-    <div class="row">
+        
           <?php
 
           if(mysqli_num_rows($resultado_livro) > 0)
@@ -102,6 +101,9 @@ if(isset($_POST['pesquisa']))
               $nm_autor = $row_autor['nm_autor'];
 
               echo "
+              <h1 class='text-wrap fw-bold'>Livros encontrados</h1>
+                </div>
+              <div class='row'>
               <div class='col-md-2 col-3 todos-livros mx-3'>
                     <div class='position-relative'>
                       <img src='$img_livro'>
@@ -121,7 +123,8 @@ if(isset($_POST['pesquisa']))
           }
           else
           {
-            echo "<p class='text-wrap fw-bold fs-2'>Não encontramos livros</p>";
+            echo "  </div>
+            <div class='row'><p class='text-wrap fw-bold fs-2'>Não encontramos livros</p>";
           }
 
         ?>
@@ -129,7 +132,7 @@ if(isset($_POST['pesquisa']))
 </div>
 </div>
 
-<footer class=" d-flex mt-5 justify-content-center">
+<footer class=" d-flex mt-5 justify-content-center fixed-bottom">
     <div class="text-center rounded-pill w-100">
         <span class="text-wrap fw-bold">Teenage Dream por Alexandre Silva © 2023</span>
     </div>

@@ -13,12 +13,12 @@ INSERT INTO tb_livro (nm_livro, img_livro, cd_autor) VALUES
 ('A Menina que Roubava Livros', './images/livros/a-menina-que-roubava-livros.jpg', 11),
 ('O Pequeno Príncipe', './images/livros/o-pequeno-principe.jpg', 12),
 ('A Revolução dos Bichos', './images/livros/a-revolucao-dos-bichos.jpg', 7),
-('Maze Runner: Correr ou Morrer', './images/livros/maze-runner.jpg', 14),
-('O Alquimista', './images/livros/o-alquimista.jpg', 15),
-('Orgulho e Preconceito', './images/livros/orgulho-e-preconceito.jpg', 16),
-('As Crônicas de Nárnia: O Leão, a Feiticeira e o Guarda-Roupa', './images/livros/cronicas-de-narnia.jpg', 17),
-('As Vantagens de Ser Invisível', './images/livros/as-vantagens-de-ser-invisivel.jpg', 18),
-('O Iluminado', './images/livros/o-iluminado.jpg', 19);
+('Maze Runner: Correr ou Morrer', './images/livros/maze-runner.jpg', 13),
+('O Alquimista', './images/livros/o-alquimista.jpg', 14),
+('Orgulho e Preconceito', './images/livros/orgulho-e-preconceito.jpg', 15),
+('As Crônicas de Nárnia: O Leão, a Feiticeira e o Guarda-Roupa', './images/livros/cronicas-de-narnia.jpg', 16),
+('As Vantagens de Ser Invisível', './images/livros/as-vantagens-de-ser-invisivel.jpg', 17),
+('O Iluminado', './images/livros/o-iluminado.jpg', 18);
 
 
 INSERT INTO tb_autor (nm_autor, img_autor) VALUES
@@ -41,5 +41,10 @@ INSERT INTO tb_autor (nm_autor, img_autor) VALUES
 ('Stephen Chbosky', './images/autores/stephen-chbosky.jpg'),
 ('Stephen King', './images/autores/stephen-king.jpg');
 
+INSERT into tb_usuario (pnm_usuario, sbnm_usuario, email_usuario, senha_usuario, privilegio) values
+	('Renan', 'Praxedes', 'renan@gmail.com', '12345678', 'comum'),
+    ('Alexandre', 'Silva', 'alexandre.silva768@etec.sp.gov.br', '12345678', 'admin');
+
 select * from tb_autor;
 select * from tb_livro;
+SELECT * FROM tb_usuario;

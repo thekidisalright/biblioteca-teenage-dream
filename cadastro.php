@@ -66,7 +66,7 @@ if(isset($_POST['email']) || isset($_POST['senha']) || isset($_POST['nome']) || 
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>Usuário cadastrado com sucesso!
                     <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
-                    sleep(10);
+                    sleep(3);
                     header("Location: ./index.php");
                 }
                 else

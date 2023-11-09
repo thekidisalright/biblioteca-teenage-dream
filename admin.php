@@ -82,7 +82,7 @@ else
         </div>
     </div>
       
-    <footer class=" d-flex mt-5 justify-content-center">
+    <footer class=" d-flex mt-5 justify-content-center fixed-bottom">
     <div class="text-center rounded-pill w-100">
         <span class="text-wrap fw-bold">Teenage Dream por Alexandre Silva © 2023</span>
     </div>

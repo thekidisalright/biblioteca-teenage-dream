@@ -301,7 +301,7 @@ $dataHoje = date("d/m/Y");
             $img_livro = $col_livro['img_livro'];
             echo "
                   <div class='col-md-2 col-3 todos-livros mx-3 mb-4'>
-                    <div class='position-relative'>
+                    <div class='position-relative h-100'>
                       <img src='$img_livro'>
                       <div class='livro-nome position-absolute bottom-0 start-0 px-2 py-1'>
                         <span>$col_livro[nm_livro]</span>
